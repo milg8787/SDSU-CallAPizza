@@ -1,0 +1,289 @@
+html body {
+    background-image: url("../images/background.jpg");
+    background-color: #cccccc;
+    height: 100%;
+}
+
+
+/* ----------- Content section in the middle of the website -----------*/
+
+.content {
+    max-width: 1000px;
+    margin: auto;
+    display: block;
+    overflow: auto;
+    background: linear-gradient(-45deg, #450303, #7a0d0d, #cf5d17, #e09812);
+    border-left: 5px double yellow;
+    border-right: 5px double yellow;
+}
+
+.contentSeperator {
+    border-top: 5px double yellow;
+    width: 97%;
+}
+
+
+/* ----------- Navigation bar CSS -----------*/
+
+nav {
+    padding: 15px;
+    text-align: center;
+    background-color: rgb(51, 51, 51);
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+}
+
+.linkMenu {
+    transition: 0.4s;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 0 10px;
+    margin: 0 10px;
+}
+
+.linkMenu:hover {
+    background-color: #fcedd8;
+    color: #cf5d17;
+    padding: 15px 25px;
+}
+
+#cart {
+    height: 50px;
+    width: 50px;
+}
+
+
+/* ----------- Logo section ----------- */
+
+.logo {
+    font-size: 5rem;
+    text-align: center;
+    height: 15vh;
+    line-height: 10vh;
+    color: #fcedd8;
+    font-family: 'Niconne', cursive;
+    font-weight: 700;
+    text-shadow: 5px 5px 0px #eb452b, 10px 10px 0px #efa032, 15px 15px 0px #e09812, 20px 20px 0px #cf5d17, 25px 25px 0px #7a0d0d, 30px 30px 0px #450303
+}
+
+h3 {
+    margin: 2%;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+p {
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-size: 20px;
+    margin-left: 40px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 1em;
+}
+
+td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+td a,
+td input,
+td img {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+
+/* ----------- ProductTeaser on main page ----------- */
+
+.productTeaser {
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #111;
+    margin: auto;
+    transition: 0.7s ease;
+}
+
+.productTeaser:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 0.7s ease;
+}
+
+.productTeaser a:hover {
+    background-position: 0 100%;
+}
+
+.featuredImages {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.productTeaserCaption {
+    margin-left: 10px;
+}
+
+
+/* ----------- Season Pizza Teaser on main page ----------- */
+
+.seasonPizzaTeaser {
+    width: 450px;
+    height: 400px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #111;
+    border-radius: 15px;
+    margin: auto;
+    transition: 0.7s ease;
+}
+
+.seasonPizzaTeaser:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 0.7s ease;
+}
+
+.seasonPizzaTeaser a:hover {
+    background-position: 0 100%;
+}
+
+.seasonImages {
+    width: 450px;
+    height: 300px;
+    margin-bottom: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+
+/* ----------- Customer input form */
+
+.form-style-5 {
+    max-width: 900px;
+    padding: 10px 20px;
+    background: #f4f7f8;
+    margin: 10px auto;
+    padding: 20px;
+    background: #f4f7f8;
+    border-radius: 8px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.form-style-5 fieldset {
+    border: none;
+}
+
+.form-style-5 legend {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.form-style-5 label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-style-5 input[type="text"],
+.form-style-5 input[type="date"],
+.form-style-5 input[type="datetime"],
+.form-style-5 input[type="email"],
+.form-style-5 input[type="number"],
+.form-style-5 input[type="search"],
+.form-style-5 input[type="time"],
+.form-style-5 input[type="url"],
+.form-style-5 textarea,
+.form-style-5 select {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    background: rgba(255, 255, 255, .1);
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    margin: 0;
+    outline: 0;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #e8eeef;
+    color: #8a97a0;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+    margin-bottom: 30px;
+}
+
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="date"]:focus,
+.form-style-5 input[type="datetime"]:focus,
+.form-style-5 input[type="email"]:focus,
+.form-style-5 input[type="number"]:focus,
+.form-style-5 input[type="search"]:focus,
+.form-style-5 input[type="time"]:focus,
+.form-style-5 input[type="url"]:focus,
+.form-style-5 textarea:focus,
+.form-style-5 select:focus {
+    background: #d2d9dd;
+}
+
+.form-style-5 select {
+    -webkit-appearance: menulist-button;
+    height: 35px;
+}
+
+.form-style-5 .number {
+    background: #cf5d17;
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-right: 4px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-radius: 15px 15px 15px 0px;
+}
+
+.form-style-5 input[type="submit"],
+.form-style-5 input[type="button"] {
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: #cf5d17;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    border: 1px solid #eb452b;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+}
+
+.form-style-5 input[type="submit"]:hover,
+.form-style-5 input[type="button"]:hover {
+    background: #efa032;
+}
