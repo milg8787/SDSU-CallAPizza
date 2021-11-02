@@ -1,5 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect, session
 
+import uuid
+
 app = Flask(__name__)
 app.secret_key = "CallAPizzaSecret"
 
@@ -13,7 +15,10 @@ def products(name=None):
 
 @app.route("/order")
 def order(name=None):
-    return render_template('order.html', name=name)
+    session = uuid.uuid1
+    pizzaList = ["Pizza Salami", "Pizza Ham", "Pizza Romana"]
+    description = "Tomatoes and Cheese"
+    return render_template('order.html', name=name, pizzaList=pizzaList, description=description)
 
 @app.route("/customerInput", methods = ["POST", "GET"])
 def customerInput(name=None):
