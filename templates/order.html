@@ -20,12 +20,24 @@
                         <option value="medium">medium</option>
                         <option value="large">large</option>    
                         </select>
-                        <div class="quantityPicker">
-                            <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
-                            <input type="number" id="number" value="1" />
-                            <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
-                            <input type="submit" id="submit" value="Add to cart">
+                        <br>
+                        <label for="quantity">Choose a quantity:</label>
+                        <div class="orderTableDropdown">
+                            <select id="{{['dropDown_',pizza]|join}}">
+                               <option value="1">1</option>
+                               <option value="2">2</option>
+                               <option value="3">3</option>
+                               <option value="4">4</option>
+                               <option value="5">5</option>
+                               <option value="6">6</option>
+                               <option value="7">7</option>
+                               <option value="8">8</option>
+                               <option value="9">9</option>
+                               <option value="10">10</option>
+                            </select>
                         </div>
+                        <br>
+                        <input type="submit" value="Add to cart">
                     </div>
 
                 </div>
@@ -35,29 +47,28 @@
                     <h4>Additional Items</h4>
                     <ul class="orderTableAdditionalItemContainerList">
                         <li>
-                            <input type="checkbox" id="checkBoxSalami">
+                            <input type="checkbox" id="{{['checkboxSalami_',pizza]|join}}">
                             <label for="checkBoxSalami">Salami</label>
                         </li>
-
                         <li>
-                            <input type="checkbox" id="checkBoxHam">
+                            <input type="checkbox" id="{{['checkboxHam_',pizza]|join}}">
                             <label for="checkBoxHam">Ham</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="checkBoxPepperoni">
+                            <input type="checkbox" id="{{['checkboxPepperoni_',pizza]|join}}">
                             <label for="checkBoxPepperoni">Pepperoni</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="checkBoxJalapenos">
+                            <input type="checkbox" id="{{['checkboxJalapenos_',pizza]|join}}">
                             <label for="checkBoxJalapenos">Jalapenos</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="checkBoxBlackOlives">
+                            <input type="checkbox" id="{{['checkboxBlackOlives_',pizza]|join}}">
                             <label for="checkBoxBlackOlives">Black Olives</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="checkBoxRedOnions">
-                            <label for="checkBoxBlackOlives">Red Onions</label>
+                            <input type="checkbox" id="{{['checkboxRedOnions_',pizza]|join}}">
+                            <label for="checkBoxRedOnions">Red Onions</label>
                         </li>
                     </ul>
                 </div>

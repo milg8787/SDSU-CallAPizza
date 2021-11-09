@@ -236,16 +236,6 @@ td img {
     cursor: pointer;
 }
 
-#decrease {
-    margin-right: -4px;
-    border-radius: 8px 0 0 8px;
-}
-
-#increase {
-    margin-left: -4px;
-    border-radius: 0 8px 8px 0;
-}
-
 #input-wrap {
     margin: 0px;
     padding: 0px;
@@ -279,6 +269,14 @@ input[type=number]::-webkit-outer-spin-button {
     width: 200px;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
+}
+
+.orderTableDropdown {
+    float: right
+}
+
+.size {
+    float: right
 }
 
 .orderTableAddionalItemContainer {
