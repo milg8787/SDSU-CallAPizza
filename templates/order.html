@@ -1,21 +1,21 @@
 {% extends "base.html" %} {% block content %}
 
-<h1>HUGO</h1>
+<h3>FEATURED PRODUCTS</h3>
 
 <table class="orderTable">
-    <form>
-        {% for pizza in pizzaList %}
+    {% for pizza in pizzaList %}
+    <form action="#" method="POST">
         <tr>
             <td class="orderTableTdProduct">
                 <div class="orderTableProductContainer">
                     <div class="orderTableProductContainerPictureContainer">
-                        <img class="orderTablePicture" src="{{ url_for('static',filename='images/pizza1.jpeg') }}" alt="Pizza Magarita">
+                        <img class="orderTablePicture" src="{{ url_for('static',filename='images/pizza1.jpeg') }}">
                     </div>
                     <div class="orderTableProductContainerCaption">
-                        <h4 class="orderTableProductTeaserCaption">{{ pizza }}</h4>
-                        <h5 class="orderTableProductTeaserCaption">{{ description }}</h5>
+                        <h5 class="orderTableProductTeaserCaption">{{ pizza[0] }}</h5>
+                        <h6 class="orderTableProductTeaserCaption">{{ pizza[1] }}</h6>
                         <label for="size">Choose a size:</label>
-                        <select id="size" name="size">
+                        <select id="size" name="{{['size_',pizza[0]]|join}}">
                         <option value="small">small</option>
                         <option value="medium">medium</option>
                         <option value="large">large</option>    
@@ -23,7 +23,7 @@
                         <br>
                         <label for="quantity">Choose a quantity:</label>
                         <div class="orderTableDropdown">
-                            <select id="{{['dropDown_',pizza]|join}}">
+                            <select name="{{['quantity_',pizza[0]]|join}}" id="{{['dropDown_',pizza[0]]|join}}">
                                <option value="1">1</option>
                                <option value="2">2</option>
                                <option value="3">3</option>
@@ -47,35 +47,36 @@
                     <h4>Additional Items</h4>
                     <ul class="orderTableAdditionalItemContainerList">
                         <li>
-                            <input type="checkbox" id="{{['checkboxSalami_',pizza]|join}}">
+                            <input type="checkbox" name="{{['checkboxSalami_',pizza[0]]|join}}" id="{{['checkboxSalami_',pizza[0]]|join}}">
                             <label for="checkBoxSalami">Salami</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="{{['checkboxHam_',pizza]|join}}">
+                            <input type="checkbox" name="{{['checkboxHam_',pizza[0]]|join}}" id="{{['checkboxHam_',pizza[0]]|join}}">
                             <label for="checkBoxHam">Ham</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="{{['checkboxPepperoni_',pizza]|join}}">
+                            <input type="checkbox" name="{{['checkboxPepperoni_',pizza[0]]|join}}" id="{{['checkboxPepperoni_',pizza[0]]|join}}">
                             <label for="checkBoxPepperoni">Pepperoni</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="{{['checkboxJalapenos_',pizza]|join}}">
+                            <input type="checkbox" name="{{['checkboxJalapenos_',pizza[0]]|join}}" id="{{['checkboxJalapenos_',pizza[0]]|join}}">
                             <label for="checkBoxJalapenos">Jalapenos</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="{{['checkboxBlackOlives_',pizza]|join}}">
+                            <input type="checkbox" name="{{['checkboxBlackOlives_',pizza[0]]|join}}" id="{{['checkboxBlackOlives_',pizza[0]]|join}}">
                             <label for="checkBoxBlackOlives">Black Olives</label>
                         </li>
                         <li>
-                            <input type="checkbox" id="{{['checkboxRedOnions_',pizza]|join}}">
+                            <input type="checkbox" name="{{['checkboxRedOnions_',pizza[0]]|join}}" id="{{['checkboxRedOnions_',pizza[0]]|join}}">
                             <label for="checkBoxRedOnions">Red Onions</label>
                         </li>
                     </ul>
                 </div>
             </td>
         </tr>
-        {% endfor %}
     </form>
+    {% endfor %}
+
 </table>
 
 {% endblock content %}
