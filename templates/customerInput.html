@@ -1,17 +1,17 @@
 {% extends "base.html" %} {% block content %}
 
 <div class="form-style-5">
-    <form action="#" method="POST">
+    <form action="{{ url_for('customerInput') }}" method="POST">
         <fieldset>
             <legend><span class="number"></span> Customer Info</legend>
-            <input type="text" name="CustomerLastName" placeholder="Your Last Name *">
-            <input type="text" name="CustomerFirstName" placeholder="Your First Name *">
-            <input type="text" name="Address" placeholder="Your Address *">
-            <input type="text" name="Zipcode" placeholder="Your Zipcode *">
-            <input type="text" name="City" placeholder="Your City *">
-            <input type="text" name="PhoneNumber" placeholder="Your Phone Number *">
-            <input type="email" name="Email" placeholder="Your Email *">
-            <textarea name="AddressComments" placeholder="Additional Address Informations"></textarea>
+            <input type="text" name="customerLastName" placeholder="Your Last Name *">
+            <input type="text" name="customerFirstName" placeholder="Your First Name *">
+            <input type="text" name="address" placeholder="Your Address *">
+            <input type="text" name="zipCode" placeholder="Your Zipcode *">
+            <input type="text" name="city" placeholder="Your City *">
+            <input type="text" name="phoneNumber" placeholder="Your Phone Number *">
+            <input type="email" name="email" placeholder="Your Email *">
+            <textarea name="addressComments" placeholder="Additional Address Informations"></textarea>
             <input type="submit" value="Continue" />
     </form>
 </div>
