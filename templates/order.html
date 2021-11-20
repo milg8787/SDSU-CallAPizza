@@ -16,36 +16,45 @@
                             <h5 class="orderTableProductTeaserCaption">{{ pizza[0] }}</h5>
                             <h6 class="orderTableProductTeaserCaption">{{ pizza[1] }}</h6>
                             <label for="size">Choose a size:</label>
-                            <select id="size" name="{{['size_',pizza[0]]|join}}">
-                        <option value="small">small</option>
-                        <option value="medium">medium</option>
-                        <option value="large">large</option>    
-                        </select>
                             <br>
                             <label for="quantity">Choose a quantity:</label>
-                            <div class="orderTableDropdown">
-                                <select name="{{['quantity_',pizza[0]]|join}}" id="{{['dropDown_',pizza[0]]|join}}">
+                            <br>
+                        </div>
+                        <input type="submit" class="cartButton" value="Add to cart" name="addToCart">
+
+                        <br>
+
+                        <div class="orderInformationContainer">
+                            <div class="orderInformationContainerContent">
+                                <select class="sizePicker" name="{{['size_',pizza[0]]|join}}">
+                                <option value="small">small</option>
+                                <option value="medium">medium</option>
+                                <option value="large">large</option>    
+                            </select>
+                                <br>
+                                <select class="quantityPicker" name="{{['quantity_',pizza[0]]|join}}" id="{{['dropDown_',pizza[0]]|join}}">
                                <option value="1">1</option>
                                <option value="2">2</option>
                                <option value="3">3</option>
                                <option value="4">4</option>
                                <option value="5">5</option>
                                <option value="6">6</option>
-                               <option value="7">7</option>
+                               <option value="7">s7</option>
                                <option value="8">8</option>
                                <option value="9">9</option>
                                <option value="10">10</option>
                             </select>
+                                <br>
+                                <h5 class="price">{{['$',pizza[2]]|join}}</h5>
                             </div>
-                            <br>
-                            <input type="submit" value="Add to cart" name="addToCart">
                         </div>
+
 
                     </div>
                 </td>
                 <td>
                     <div class="orderTableAddionalItemContainer">
-                        <h4>Additional Items</h4>
+                        <h5>Additional Items</h5>
                         <ul class="orderTableAdditionalItemContainerList">
                             <li>
                                 <input type="checkbox" name="{{['checkboxSalami_',pizza[0]]|join}}" id="{{['checkboxSalami_',pizza[0]]|join}}">

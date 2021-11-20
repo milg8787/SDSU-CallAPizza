@@ -3,6 +3,8 @@ import re
 from flask import Flask, render_template, url_for, request, redirect, session
 
 import uuid, sys, datetime
+
+from werkzeug.wrappers import response
 from customerTO import customerTO
 
 import pymssql
@@ -27,22 +29,27 @@ def order(name=None):
     pizzaList = []
     
 
-    ##customerID = session['customerID']
+    customerID = session['customerID']
     cursor.execute("Select * from products")
     products = cursor.fetchall()
         
     for item in products:
-        tempList = [item[1], item[2]]
+        tempList = [item[1], item[2], item[3]]
         pizzaList.append(tempList)
 
-        if request.method == "POST":
-            orderList.append(request.form.get)
+    if request.method == "POST":
+        orderList.append(request.form.get)
 
-            if request.form.get("goToCart"):
-                orderInsert = """INSERT INTO orders (customerID, orderDate, orderStatus, delivery) 
-                                VALUES (%s, %s, %s, %s) """
-                orderInsertRecord = (customerID, datetime.datetime.now(), 0, request.form.get("isDelivery"))
-                cursor.execute(orderInsert, orderInsertRecord)
+        if request.form.get("goToCart"):
+            orderInsert = """INSERT INTO orders (customerID, orderDate, orderStatus, delivery) 
+                            VALUES (%s, %s, %s, %s) """
+            # Fix delivery with a button in customerInput
+            orderInsertRecord = (customerID, datetime.datetime.now(), 0, 0)
+            cursor.execute(orderInsert, orderInsertRecord)
+            conn.commit()
+
+            orderDetailsInsert = """INSERT INTO orderDetails (orderID, productID, price, quantity, salami, ham, pepperoni, jalapenos, blackOlives, redOnions)
+                            VALUES  (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
         
     ##cursor.execute("Insert into orders")
         
@@ -67,14 +74,15 @@ def customerInput(name=None):
         cursor.execute(customerInsertQuery, customerInputRecord)
         conn.commit()
 
-        # customerQuery = """Select customerID from customers where customerLastName = %s and customerFirstName = %s"""
-        # customerInput = (request.form.get("customerLastName"), request.form.get("customerFirstName"))
-        # cursor.execute("""Select customerID from customers where customerLastName = 'Ilg' and customerFirstName = 'Marius'""")
-        # customerID = cursor.fetchone()
-        # print("----------------"+ customerID, file=sys.stderr)
-        # session['customerID'] = customerID
+        customerQuery = """Select customerID from customers where customerLastName = %s and customerFirstName = %s"""
+        customerInput = (request.form.get("customerLastName"), request.form.get("customerFirstName"))
+        cursor.execute(customerQuery, customerInput)
+        customerID = cursor.fetchone()
+        print(customerID[0], file=sys.stderr)
+        session['customerID'] = customerID[0]
 
         conn.close()
+        return redirect(url_for("order", none=None))
     
     return render_template('customerInput.html', name=name)
 
