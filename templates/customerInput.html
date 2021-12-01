@@ -4,6 +4,8 @@
     <form action="{{ url_for('customerInput') }}" method="POST">
         <fieldset>
             <legend><span class="number"></span> Customer Info</legend>
+            <!-- Fix radion button for delivery -->
+            <input type="radio" name="isDelivery">
             <input type="text" name="customerLastName" placeholder="Your Last Name *">
             <input type="text" name="customerFirstName" placeholder="Your First Name *">
             <input type="text" name="address" placeholder="Your Address *">
@@ -15,6 +17,8 @@
             <input type="submit" value="Continue" />
     </form>
 </div>
+
+<!-- necessary? -->
 </div>
 
 {% endblock content %}

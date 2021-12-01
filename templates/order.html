@@ -39,7 +39,7 @@
                                <option value="4">4</option>
                                <option value="5">5</option>
                                <option value="6">6</option>
-                               <option value="7">s7</option>
+                               <option value="7">7</option>
                                <option value="8">8</option>
                                <option value="9">9</option>
                                <option value="10">10</option>
@@ -48,8 +48,6 @@
                                 <h5 class="price">{{['$',pizza[2]]|join}}</h5>
                             </div>
                         </div>
-
-
                     </div>
                 </td>
                 <td>
@@ -81,6 +79,7 @@
                                 <label for="checkBoxRedOnions">Red Onions</label>
                             </li>
                         </ul>
+                        <h6>Each additional item $0.50</h6>
                     </div>
                 </td>
             </tr>
@@ -88,7 +87,10 @@
         {% endfor %}
 
     </table>
-    <input type="submit" value="Go to cart" name="goToCart">
+    <div class="form-style-5">
+        <input type="submit" value="Go to cart" name="goToCart">
+    </div>
+
 </form>
 
 {% endblock content %}

@@ -425,3 +425,72 @@ input[type=number]::-webkit-outer-spin-button {
 .form-style-5 input[type="button"]:hover {
     background: #efa032;
 }
+
+
+/* ----------- cart form */
+
+.cartOrderItem {
+    text-align: left;
+    width: 100%;
+}
+
+.cartOrderItemContainer {
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.cartOrderItemListPizzaNameContainer {
+    float: left;
+    width: 24%;
+}
+
+.cartOrderItemListSizeContainer {
+    float: left;
+    width: 15%;
+}
+
+.cartOrderItemListQuantityContainer {
+    float: left;
+    width: 15%;
+}
+
+.cartOrderItemAdditionalItemsContainer {
+    float: left;
+    width: 32%;
+}
+
+.cartOrderItemListPriceContainer {
+    float: left;
+    width: 11%;
+}
+
+.cartOrderItemDeleteButtonContainer {
+    float: left;
+    padding-top: 8px;
+}
+
+.binIcon {
+    width: 25px;
+    height: 25px;
+    float: left;
+}
+
+.cartOrderItemTotalTrContainer {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.cartOrderItemTotalContainer {
+    float: left;
+    width: 86%;
+}
+
+.cartOrderItemTotalPriceContainer {
+    float: left;
+}

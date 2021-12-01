@@ -1,0 +1,88 @@
+{% extends "base.html" %} {% block content %}
+
+<table class="orderTable">
+    <th class="cartOrderItem">
+        <div class="cartOrderItemContainer">
+            <div class="cartOrderItemListPizzaNameContainer">
+                <h5>Product Name</h5>
+            </div>
+
+            <div class="cartOrderItemListSizeContainer ">
+                <h5>Size</h5>
+            </div>
+
+            <div class="cartOrderItemListQuantityContainer ">
+                <h5>Quantity</h5>
+            </div>
+
+            <div class="cartOrderItemAdditionalItemsContainer ">
+                <h5>Additional Items</h5>
+            </div>
+
+            <div class="cartOrderItemListPriceContainer ">
+                <h5>Price</h5>
+            </div>
+        </div>
+
+    </th>
+    {% for item in orderList %}
+    <tr>
+        <td class="cartOrderItem ">
+            <div class="cartOrderItemContainer ">
+                <div class="cartOrderItemListPizzaNameContainer ">
+                    <h6>{{ item[0] }}</h6>
+                </div>
+
+                <div class="cartOrderItemListSizeContainer ">
+                    <h6>{{ item[1] }}</h6>
+                </div>
+
+                <div class="cartOrderItemListQuantityContainer ">
+                    <h6>{{ item[2] }}</h6>
+                </div>
+
+                <div class="cartOrderItemAdditionalItemsContainer ">
+                    <h6>{{ item[3] }}</h6>
+                </div>
+
+                <div class="cartOrderItemListPriceContainer ">
+                    <h6>{{ item[4] }}</h6>
+                </div>
+
+                <div class="cartOrderItemDeleteButtonContainer ">
+                    <img class="binIcon" src="{{ url_for('static',filename='images/bin.png') }}">
+                </div>
+
+
+            </div>
+        </td>
+
+
+
+    </tr>
+    {% endfor %}
+
+
+    <tr>
+        <td class="cartOrderItem ">
+            <div class="cartOrderItemTotalTrContainer ">
+                <div class="cartOrderItemTotalContainer ">
+                    <h5>TOTAL</h5>
+                </div>
+
+                <div class="cartOrderItemTotalPriceContainer ">
+                    <h5>999.99</h5>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+</table>
+
+
+<div class="form-style-5 ">
+    <input type="submit" value="Order" />
+</div>
+
+
+{% endblock content %}
