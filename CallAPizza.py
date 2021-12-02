@@ -7,7 +7,8 @@ import uuid, sys, datetime
 from werkzeug.wrappers import response
 from customerTO import customerTO
 
-import pymssql
+#import pymssql
+import pyodbc
 
 app = Flask(__name__)
 app.secret_key = "CallAPizzaSecret"
@@ -26,7 +27,7 @@ def products(name=None):
 @app.route("/customerInput", methods = ["POST", "GET"])
 def customerInput(name=None):
     if request.method == "POST":
-        conn = pymssql.connect(server='callapizza.database.windows.net:1433', user='SanDiegoAdmin', password='Tiftpasdsu1', database='callapizza')
+        conn = connectToDatabase()
         cursor = conn.cursor()
 
         customerInsertQuery = """INSERT INTO customers (customerLastName, customerFirstName, address, zipCode, city, phoneNumber, addressComments, email) 
@@ -51,7 +52,7 @@ def customerInput(name=None):
         orderInsert = """INSERT INTO orders (customerID, orderDate, orderStatus, delivery) 
                             VALUES (%s, %s, %s, %s) """
             # Fix delivery with a button in customerInput
-        orderInsertRecord = (customerID[0], datetime.datetime.now(), 0, request.form.get("isDelivery"))
+        orderInsertRecord = (customerID[0], datetime.datetime.now(), 0, 1)
         cursor.execute(orderInsert, orderInsertRecord)
         conn.commit()
 
@@ -61,10 +62,13 @@ def customerInput(name=None):
     return render_template('customerInput.html', name=name)
 
 
+
+
 @app.route("/order", methods = ["POST", "GET"])
 def order(name=None):
-    conn = pymssql.connect(server='callapizza.database.windows.net:1433', user='SanDiegoAdmin', password='Tiftpasdsu1', database='callapizza')
+    conn = connectToDatabase()
     cursor = conn.cursor()
+
     orderList = []
     pizzaList = []
     
@@ -80,7 +84,7 @@ def order(name=None):
         orderList.append(request.form.get)
 
         if request.form.get("goToCart"):
-            print(orderList, file=sys.stderr)
+            print(orderList[0], file=sys.stderr)
 
             orderDetailsInsert = """INSERT INTO orderDetails (orderID, productID, price, quantity, salami, ham, pepperoni, jalapenos, blackOlives, redOnions)
                             VALUES  (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
@@ -92,10 +96,11 @@ def order(name=None):
     return render_template('order.html', pizzaList=pizzaList)
 
 
+
+
 @app.route("/cart")
 def cart(name=None):
-    #conn = pymssql.connect(server='callapizza.database.windows.net:1433', user='SanDiegoAdmin', password='Tiftpasdsu1', database='callapizza')
-    #cursor = conn.cursor()
+    #conn, cursor = connectToDatabase())
 
     #orderDetailsQuery = """Select price, quantiy, salami, ham, pepperoni, jalapenos, blackOlives, redOnions from orderDetails where orderID = %s"""
     #orderDetailsInput = (session['orderID'])
@@ -118,3 +123,23 @@ def success(name=None):
     firstName = "hugo"
     return render_template('success.html', value=firstName)
 
+
+
+### Use this as mac OS
+# def connectToDatabase():
+#     conn = pymssql.connect(server='callapizza.database.windows.net:1433',
+#     user='SanDiegoAdmin', 
+#     password='Tiftpasdsu1', 
+#     database='callapizza')
+#     return conn
+
+
+### Use this as windows and linux
+def connectToDatabase():
+    conn = pyodbc.connect('Driver={ODBC Driver 13 for SQL Server};'
+    'Server=tcp:callapizza.database.windows.net,1433;'
+    'Database=CallAPizza;Uid=SanDiegoAdmin;'
+    'Pwd=Tiftpasdsu1;'
+    'Encrypt=yes;TrustServerCertificate=no;'
+    'Connection Timeout=30;')
+    return conn
