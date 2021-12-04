@@ -125,21 +125,26 @@ def success(name=None):
 
 
 
-### Use this as mac OS
-# def connectToDatabase():
-#     conn = pymssql.connect(server='callapizza.database.windows.net:1433',
-#     user='SanDiegoAdmin', 
-#     password='Tiftpasdsu1', 
-#     database='callapizza')
-#     return conn
-
-
-### Use this as windows and linux
+## Use this as mac OS
 def connectToDatabase():
-    conn = pyodbc.connect('Driver={ODBC Driver 13 for SQL Server};'
-    'Server=tcp:callapizza.database.windows.net,1433;'
-    'Database=CallAPizza;Uid=SanDiegoAdmin;'
-    'Pwd=Tiftpasdsu1;'
-    'Encrypt=yes;TrustServerCertificate=no;'
+    conn = pymssql.connect(server='callapizza.database.windows.net:1433',
+    user='SanDiegoAdmin', 
+    password='Tiftpasdsu1', 
+    database='callapizza')
+    return conn
+
+
+## Use this as windows and linux
+def connectToDatabase():
+    conn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};'
+    'SERVER=tcp:callapizza.database.windows.net,1433;'
+    'DATABASE=CallAPizza;Uid=SanDiegoAdmin;'
+    'PWD=Tiftpasdsu1;'
+    'ENCRYPT=yes;TrustServerCertificate=no;'
     'Connection Timeout=30;')
     return conn
+
+
+# conn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};'
+#                       'SERVER=tcp:nameServer.database.windows.net,1433;'
+#                       'DATABASE=Name database; UID=name; PWD=password;')
