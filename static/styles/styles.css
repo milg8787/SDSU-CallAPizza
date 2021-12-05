@@ -186,7 +186,7 @@ td img {
 
 .orderTableProductContainer {
     width: 100%;
-    height: 200px;
+    height: 210px;
     background-color: white;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -279,12 +279,12 @@ input[type=number]::-webkit-outer-spin-button {
 .orderTableProductContainerPictureContainer {
     background-color: white;
     width: 200px;
-    height: 200px;
+    height: 210px;
     float: left;
 }
 
 .orderTablePicture {
-    height: 200px;
+    height: 210px;
     width: 200px;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -299,7 +299,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .orderTableAddionalItemContainer {
-    height: 200px;
+    height: 210px;
     background-color: white;
     padding: 3%;
     padding-top: 18px;

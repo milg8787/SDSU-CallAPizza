@@ -2,37 +2,38 @@
 
 <h3>FEATURED PRODUCTS</h3>
 
-<form action="" method="POST">
-    <table class="orderTable">
-        {% for pizza in pizzaList %}
-        <form action="#" method="POST">
-            <tr>
-                <td class="orderTableTdProduct">
-                    <div class="orderTableProductContainer">
-                        <div class="orderTableProductContainerPictureContainer">
-                            <img class="orderTablePicture" src="{{ url_for('static',filename='images/pizza1.jpeg') }}">
-                        </div>
-                        <div class="orderTableProductContainerCaption">
-                            <h5 class="orderTableProductTeaserCaption">{{ pizza[0] }}</h5>
-                            <h6 class="orderTableProductTeaserCaption">{{ pizza[1] }}</h6>
-                            <label for="size">Choose a size:</label>
-                            <br>
-                            <label for="quantity">Choose a quantity:</label>
-                            <br>
-                        </div>
-                        <input type="submit" class="cartButton" value="Add to cart" name="addToCart">
-
+<table class="orderTable">
+    {% for pizza in pizzaList %}
+    <form action="" id="innerForm" method="POST">
+        <tr>
+            <td class="orderTableTdProduct">
+                <div class="orderTableProductContainer">
+                    <div class="orderTableProductContainerPictureContainer">
+                        <img class="orderTablePicture" src="{{ url_for('static',filename='images/pizza1.jpeg') }}">
+                    </div>
+                    <div class="orderTableProductContainerCaption">
+                        <input type="hidden" name="productID" value="{{ pizza[0] }}">
+                        <input type="hidden" name="basicPrice" value="{{ pizza[3] }}">
+                        <h5 class="orderTableProductTeaserCaption">{{ pizza[1] }}</h5>
+                        <h6 class="orderTableProductTeaserCaption">{{ pizza[2] }}</h6>
+                        <label for="size">Choose a size:</label>
                         <br>
+                        <label for="quantity">Choose a quantity:</label>
+                        <br>
+                    </div>
+                    <input type="submit" class="cartButton" value="Add to cart" name="addToCart">
 
-                        <div class="orderInformationContainer">
-                            <div class="orderInformationContainerContent">
-                                <select class="sizePicker" name="{{['size_',pizza[0]]|join}}">
-                                <option value="small">small</option>
-                                <option value="medium">medium</option>
-                                <option value="large">large</option>    
+                    <br>
+
+                    <div class="orderInformationContainer">
+                        <div class="orderInformationContainerContent">
+                            <select class="sizePicker" name="size">
+                                <option value="small">small (- $3)</option>
+                                <option value="medium" selected>medium</option>
+                                <option value="large">large (+ $3)</option>    
                             </select>
-                                <br>
-                                <select class="quantityPicker" name="{{['quantity_',pizza[0]]|join}}" id="{{['dropDown_',pizza[0]]|join}}">
+                            <br>
+                            <select class="quantityPicker" name="quantity">
                                <option value="1">1</option>
                                <option value="2">2</option>
                                <option value="3">3</option>
@@ -44,49 +45,50 @@
                                <option value="9">9</option>
                                <option value="10">10</option>
                             </select>
-                                <br>
-                                <h5 class="price">{{['$',pizza[2]]|join}}</h5>
-                            </div>
+                            <br>
+                            <h5 class="price">{{['$',pizza[3]]|join}}</h5>
                         </div>
                     </div>
-                </td>
-                <td>
-                    <div class="orderTableAddionalItemContainer">
-                        <h5>Additional Items</h5>
-                        <ul class="orderTableAdditionalItemContainerList">
-                            <li>
-                                <input type="checkbox" name="{{['checkboxSalami_',pizza[0]]|join}}" id="{{['checkboxSalami_',pizza[0]]|join}}">
-                                <label for="checkBoxSalami">Salami</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="{{['checkboxHam_',pizza[0]]|join}}" id="{{['checkboxHam_',pizza[0]]|join}}">
-                                <label for="checkBoxHam">Ham</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="{{['checkboxPepperoni_',pizza[0]]|join}}" id="{{['checkboxPepperoni_',pizza[0]]|join}}">
-                                <label for="checkBoxPepperoni">Pepperoni</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="{{['checkboxJalapenos_',pizza[0]]|join}}" id="{{['checkboxJalapenos_',pizza[0]]|join}}">
-                                <label for="checkBoxJalapenos">Jalapenos</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="{{['checkboxBlackOlives_',pizza[0]]|join}}" id="{{['checkboxBlackOlives_',pizza[0]]|join}}">
-                                <label for="checkBoxBlackOlives">Black Olives</label>
-                            </li>
-                            <li>
-                                <input type="checkbox" name="{{['checkboxRedOnions_',pizza[0]]|join}}" id="{{['checkboxRedOnions_',pizza[0]]|join}}">
-                                <label for="checkBoxRedOnions">Red Onions</label>
-                            </li>
-                        </ul>
-                        <h6>Each additional item $0.50</h6>
-                    </div>
-                </td>
-            </tr>
-        </form>
-        {% endfor %}
+                </div>
+            </td>
+            <td>
+                <div class="orderTableAddionalItemContainer">
+                    <h5>Additional Items</h5>
+                    <ul class="orderTableAdditionalItemContainerList">
+                        <li>
+                            <input type="checkbox" name="checkBoxSalami">
+                            <label for="checkBoxSalami">Salami</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="checkBoxHam">
+                            <label for="checkBoxHam">Ham</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="checkBoxPepperoni">
+                            <label for="checkBoxPepperoni">Pepperoni</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="checkBoxJalapenos">
+                            <label for="checkBoxJalapenos">Jalapenos</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="checkBoxBlackOlives">
+                            <label for="checkBoxBlackOlives">Black Olives</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="checkBoxRedOnions">
+                            <label for="checkBoxRedOnions">Red Onions</label>
+                        </li>
+                    </ul>
+                    <h6>Each additional item $0.50</h6>
+                </div>
+            </td>
+        </tr>
+    </form>
+    {% endfor %}
 
-    </table>
+</table>
+<form action="{{ url_for('cart') }}" method="POST">
     <div class="form-style-5">
         <input type="submit" value="Go to cart" name="goToCart">
     </div>
