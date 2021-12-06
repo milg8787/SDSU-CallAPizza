@@ -10,17 +10,28 @@
             <input type="text" name="customerLastName" placeholder="Your Last Name *">
             <input type="text" name="customerFirstName" placeholder="Your First Name *">
             <input type="text" name="address" placeholder="Your Address *">
-            <input type="text" name="zipCode" placeholder="Your Zipcode *">
+            <input type="text" name="zipCode" placeholder="Your Zipcode *"onkeypress="return onlyNumberKey(event)">
             <input type="text" name="city" placeholder="Your City *">
-            <input type="text" name="phoneNumber" placeholder="Your Phone Number *">
+            <input type="text" name="phoneNumber" placeholder="Your Phone Number *" maxlength="10" onkeypress="return onlyNumberKey(event)">
             <input type="email" name="email" placeholder="Your Email *">
             <input type="radio" name="Deliverly" value="yes">Deliverly Option 
             <input type="radio" name="Deliverly" value="no">To Go Option
             <textarea name="addressComments" placeholder="Additional Address Informations"></textarea>
-            <input type="submit" value="Continue" />
+            <input type="submit" name="customerInput" value="Continue" />
     </form>
 </div>
-
+<!--- onlyNumberKey Function below refered to https://www.geeksforgeeks.org/how-to-force-input-field-to-enter-numbers-only-using-javascript/--> 
+<script>
+    function onlyNumberKey(evt) {
+          
+        // Only ASCII character in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        
+        return true;
+    }
+</script>
 <!-- necessary? -->
 </div>
 

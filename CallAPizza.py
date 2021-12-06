@@ -53,7 +53,6 @@ def customerInput(name=None):
 
         orderInsert = """INSERT INTO orders (customerID, orderDate, orderStatus, delivery) 
                             VALUES (%s, %s, %s, %s) """
-            # Fix delivery with a button in customerInput
         orderInsertRecord = (customerID[0], datetime.datetime.now(), 0, 1)
         cursor.execute(orderInsert, orderInsertRecord)
         conn.commit()
@@ -70,7 +69,10 @@ def customerInput(name=None):
     
     return render_template('customerInput.html', name=name)
 
-
+@app.route("/Payment", methods = ["POST", "GET"])
+def Payment(name=None):
+    #Need to call success.html when button is pushed
+    return render_template('Payment.html', name=name)
 
 
 @app.route("/order", methods = ["POST", "GET"])
@@ -131,8 +133,7 @@ def cart(name=None):
     # if request.method == "POST":
     #     return redirect(url_for("success", none=None))
 
-
-    return render_template('cart.html', orderList=orderItems)
+    return render_template('cart.html', orderItems=orderList)
 
 
 
