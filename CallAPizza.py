@@ -71,6 +71,8 @@ def customerInput(name=None):
 
 @app.route("/Payment", methods = ["POST", "GET"])
 def Payment(name=None):
+    if request.method == "POST":
+        return redirect(url_for("success", none=None))
     #Need to call success.html when button is pushed
     return render_template('Payment.html', name=name)
 
@@ -131,13 +133,13 @@ def cart(name=None):
     ("Pizza Ham", "Large", "2", "AddtionalItem", "13.00")]
 
     # if request.method == "POST":
-    #     return redirect(url_for("success", none=None))
+    #     return redirect(url_for("Payment", none=None))
 
     return render_template('cart.html', orderItems=orderList)
 
 
 
-@app.route("/success")
+@app.route("/success",methods = ["POST", "GET"])
 def success(name=None):
     #firstName = session['firstName']
     firstName = "hugo"
