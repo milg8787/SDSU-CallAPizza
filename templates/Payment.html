@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block content %}
+<div class="form-style-5">
+    <form action="{{ url_for('customerInput') }}" method="POST">
+        <fieldset>
+            
+            <legend><span class="number"></span> Credit Card Info</legend>
+            <input type="radio" name="CardType" value="Visa">Visa 
+            <input type="radio" name="CardType" value="Master">MasterCard
+            <input type="radio" name="CardType" value="AMEX">American Express
+            <input type="radio" name="CardType" value="Discover">Discover
+            <br><br>
+            <input type="text" name="CardNumber" placeholder="Your Credit Card Number *">
+            <input type="email" name="ExpiryDate" placeholder="Expiry Date *">
+            <input type="email" name="SecurityCode" placeholder="SecurityCode *">
+            <input type="submit" value="Continue" />
+    </form>
+</div>
+{% endblock content %}
