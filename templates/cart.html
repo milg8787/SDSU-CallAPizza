@@ -48,10 +48,9 @@
                 <div class="cartOrderItemListPriceContainer ">
                     <h6>{{ item[4] }}</h6>
                 </div>
-
-                <div class="cartOrderItemDeleteButtonContainer ">
-                    <img class="binIcon" src="{{ url_for('static',filename='images/bin.png') }}">
-                </div>
+                <form action="" method=POST>
+                    <input type="image" class="cartOrderItemDeleteButtonContainer" src="{{ url_for('static',filename='images/bin.png') }}" value="">
+                </form>
 
 
             </div>
@@ -71,7 +70,7 @@
                 </div>
 
                 <div class="cartOrderItemTotalPriceContainer ">
-                    <h5>999.99</h5>
+                    <h5>{{ price }}</h5>
                 </div>
             </div>
         </td>

@@ -423,8 +423,13 @@ input[type=number]::-webkit-outer-spin-button {
 
 .form-style-5 input[type="radio"] {
     display: inline;
-    margin: 0 10px 0 10px;
+    margin: 0 15px 30px 30px;
 }
+
+input.deliveryButton {
+    margin-bottom: 30px;
+}
+
 .form-style-5 input[type="submit"]:hover,
 .form-style-5 input[type="button"]:hover {
     background: #efa032;
@@ -468,18 +473,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 .cartOrderItemListPriceContainer {
     float: left;
-    width: 11%;
+    width: 10%;
 }
 
 .cartOrderItemDeleteButtonContainer {
     float: left;
     padding-top: 8px;
-}
-
-.binIcon {
-    width: 25px;
-    height: 25px;
-    float: left;
+    width: 27px;
+    height: 33px;
 }
 
 .cartOrderItemTotalTrContainer {

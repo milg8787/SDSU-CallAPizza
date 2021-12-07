@@ -50,10 +50,14 @@ def customerInput(name=None):
         customerID = cursor.fetchone()
         session['customerID'] = customerID[0]
 
+        if request.form['delivery'] == "yes":
+            isDelivery = 1
+        else:
+            isDelivery = 0
 
         orderInsert = """INSERT INTO orders (customerID, orderDate, orderStatus, delivery) 
                             VALUES (%s, %s, %s, %s) """
-        orderInsertRecord = (customerID[0], datetime.datetime.now(), 0, 1)
+        orderInsertRecord = (customerID[0], datetime.datetime.now(), 0, isDelivery)
         cursor.execute(orderInsert, orderInsertRecord)
         conn.commit()
 
@@ -69,14 +73,6 @@ def customerInput(name=None):
     
     return render_template('customerInput.html', name=name)
 
-@app.route("/Payment", methods = ["POST", "GET"])
-def Payment(name=None):
-    if request.method == "POST":
-        return redirect(url_for("success", none=None))
-    #Need to call success.html when button is pushed
-    return render_template('Payment.html', name=name)
-
-
 @app.route("/order", methods = ["POST", "GET"])
 def order(name=None):
     conn = connectToDatabase()
@@ -84,7 +80,6 @@ def order(name=None):
 
     pizzaList = []
     
-
     cursor.execute("Select * from products")
     products = cursor.fetchall()
         
@@ -108,10 +103,11 @@ def order(name=None):
                 else:
                     price = (price + 0.5 * additionalItemList.count("on")) * float(request.form.get("quantity"))
                 
-            orderList.append([session['orderID'], request.form.get("productID"), price, request.form.get("size"), request.form.get("quantity"), 
-            replaceValue(request.form.get("checkBoxSalami")), replaceValue(request.form.get("checkBoxHam")),
-            replaceValue(request.form.get("checkBoxPepperoni")), replaceValue(request.form.get("checkBoxJalapenos")), 
-            replaceValue(request.form.get("checkBoxBlackOlives")), replaceValue(request.form.get("checkBoxRedOnions"))])
+            orderList.append([session['orderID'], request.form.get("productID"), request.form.get("productName"), 
+            price, request.form.get("size"), request.form.get("quantity"),replaceValue(request.form.get("checkBoxSalami")),
+            replaceValue(request.form.get("checkBoxHam")),replaceValue(request.form.get("checkBoxPepperoni")), 
+            replaceValue(request.form.get("checkBoxJalapenos")), replaceValue(request.form.get("checkBoxBlackOlives")),
+            replaceValue(request.form.get("checkBoxRedOnions"))])
         
         print(orderList, file=sys.stderr)
         
@@ -129,14 +125,46 @@ def cart(name=None):
     #orderDetailsInput = (session['orderID'])
     #cursor.execute(orderDetailsQuery, orderDetailsInput)
 
-    orderList = [("Pizza Salami", "Medium", "3", "Ham, Salami, Jalapenos, Pepperoni, black olives, red onions", "14.50"), ("Pizza Salami", "Small", "1", "AddtionalItem", "15.00"), 
-    ("Pizza Ham", "Large", "2", "AddtionalItem", "13.00")]
+    cartList = []
+    price = 0.0
+    for item in orderList:
+        addtionalItem = ""    
+        dict = {'Salami': item[6], 'Ham': item[7], 'Pepperoni': item[8], 'Jalapenos': item[9], 'BlackOlives': item[10], 'RedOnions': item[11]} 
+    
+        if dict['Salami'] == 1:
+            addtionalItem = addtionalItem + 'Salami, '
+        if dict['Ham'] == 1:
+            addtionalItem = addtionalItem + 'Ham, '
+        if dict['Pepperoni'] == 1:
+            addtionalItem = addtionalItem + 'Pepperoni, '
+        if dict['Jalapenos'] == 1:
+            addtionalItem = addtionalItem + 'Jalapenos, '
+        if dict['BlackOlives'] == 1:
+            addtionalItem = addtionalItem + 'Black olives, '
+        if dict['RedOnions'] == 1:
+            addtionalItem = addtionalItem + 'Red onions, '
+        
+        if len(addtionalItem) > 1:            
+            addtionalItem = addtionalItem.rstrip(", ")
+
+        cartList.append([item[2], item[4], item[5], addtionalItem, item[3]])
+        price = price + item[3]
+
+        
+
 
     # if request.method == "POST":
     #     return redirect(url_for("Payment", none=None))
 
-    return render_template('cart.html', orderItems=orderList)
+    return render_template('cart.html', orderList=cartList, price=price)
 
+
+@app.route("/payment", methods = ["POST", "GET"])
+def payment(name=None):
+    if request.method == "POST":
+        return redirect(url_for("success", none=None))
+    #Need to call success.html when button is pushed
+    return render_template('payment.html', name=name)
 
 
 @app.route("/success",methods = ["POST", "GET"])
@@ -146,14 +174,14 @@ def success(name=None):
     orderList = []
     return render_template('success.html', value=firstName)
 
+
+
 def replaceValue(value):
     if value == "on":
         return 1
     else:
         return 0
     
-
-
 ## Use this as mac OS
 def connectToDatabase():
     conn = pymssql.connect(server='callapizza.database.windows.net:1433',
