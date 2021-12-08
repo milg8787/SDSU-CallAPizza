@@ -1,11 +1,11 @@
 from itertools import count
 from os import SEEK_CUR
+import os
 import re
 from types import MethodType
 from flask import Flask, render_template, url_for, request, redirect, session
 
 import uuid, sys, datetime
-import numpy as np
 
 from werkzeug.wrappers import response
 from customerTO import customerTO
@@ -14,7 +14,7 @@ import pymssql
 # import pyodbc
 
 app = Flask(__name__)
-app.secret_key = "CallAPizzaSecret"
+app.secret_key = os.urandom(32)
 
 orderList = []
 cartList = []
@@ -31,6 +31,10 @@ def products(name=None):
 
 @app.route("/customerInput", methods = ["POST", "GET"])
 def customerInput(name=None):
+
+    if session.get('customerID') != None:
+        return redirect(url_for("order", none=None))
+
     if request.method == "POST":
         conn = connectToDatabase()
         cursor = conn.cursor()
@@ -146,22 +150,7 @@ def cart(name=None):
 
         cartList.append([count, item[2], item[4], item[5], addtionalItem, item[3]])
         price = price + item[3]
-
-    orderListDict = {"orderID":[], "productID": [], "price": [], "size": [], "quantity": [], "salami": [], "ham": [], "pepperoni": [], "jalapenos": [], "blackOlives": [], "redOnions": []}
-
-    for item in orderList:
-        orderListDict["orderID"].append(item[0])
-        orderListDict["productID"].append(item[1])
-        orderListDict["price"].append(item[2])
-        orderListDict["size"].append(item[3])
-        orderListDict["quantity"].append(item[4])
-        orderListDict["salami"].append(item[5])
-        orderListDict["ham"].append(item[6])
-        orderListDict["pepperoni"].append(item[7])
-        orderListDict["jalapenos"].append(item[8])
-        orderListDict["blackOlives"].append(item[9])
-        orderListDict["redOnions"].append(item[10])
-        
+    
 
     if request.method == "POST":
         conn = connectToDatabase()
@@ -195,9 +184,9 @@ def payment(name=None):
 
 @app.route("/success",methods = ["POST", "GET"])
 def success(name=None):
-    #firstName = session['firstName']
-    firstName = "hugo"
+    firstName = session['firstName']
     orderList = []
+    session.clear()
     return render_template('success.html', value=firstName)
 
 

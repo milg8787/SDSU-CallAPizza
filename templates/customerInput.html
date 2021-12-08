@@ -5,13 +5,13 @@
         <fieldset>
 
             <legend><span class="number"></span> Customer Info</legend>
-            <input type="text" name="customerLastName" placeholder="Your Last Name *">
-            <input type="text" name="customerFirstName" placeholder="Your First Name *">
-            <input type="text" name="address" placeholder="Your Address *">
-            <input type="text" name="zipCode" placeholder="Your Zipcode *" onkeypress="return onlyNumberKey(event)">
-            <input type="text" name="city" placeholder="Your City *">
-            <input type="text" name="phoneNumber" placeholder="Your Phone Number *" maxlength="10" onkeypress="return onlyNumberKey(event)">
-            <input type="email" name="email" placeholder="Your Email *">
+            <input type="text" name="customerLastName" placeholder="Your Last Name *" required>
+            <input type="text" name="customerFirstName" placeholder="Your First Name *" required>
+            <input type="text" name="address" placeholder="Your Address *" required>
+            <input type="text" name="zipCode" placeholder="Your Zipcode *" onkeypress="return onlyNumberKey(event)" required>
+            <input type="text" name="city" placeholder="Your City *" required>
+            <input type="text" name="phoneNumber" placeholder="Your Phone Number *" maxlength="10" onkeypress="return onlyNumberKey(event)" required>
+            <input type="email" name="email" placeholder="Your Email *" required>
             <input type="radio" name="delivery" checked="checked" value="yes">Delivery
             <input type="radio" name="delivery" value="no">To Go
             <textarea name="addressComments" placeholder="Additional Address Informations"></textarea>

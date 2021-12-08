@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ url_for('static',filename='script/script.js') }}"></script>
     <title>Call-a-Pizza</title>
     {% block head %} {% endblock head %}
@@ -17,7 +18,7 @@
         <nav id="nav">
             <a class="linkMenu" href="{{ url_for('main') }}">HOME</a>
             <a class="linkMenu" href="{{ url_for('products') }}">MENU</a>
-            <a class="linkMenu" href="{{ url_for('order') }}"><img id="cart" src="{{ url_for('static',filename='images/cart.png') }}"></a>
+            <a class="linkMenu" href="{{ url_for('cart') }}"><img id="cart" src="{{ url_for('static',filename='images/cart.png') }}"></a>
         </nav>
 
 

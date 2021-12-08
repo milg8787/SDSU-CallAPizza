@@ -7,3 +7,12 @@ function onlyNumberKey(evt) {
 
     return true;
 }
+
+$(document).ready(function() {
+    var rowCount = $('#orderTbl tr').length;
+    if (rowCount <= 2) {
+        $('#orderButton').css('background', '#8a97a0');
+        $('#orderButton').prop('disabled', true)
+    }
+
+})

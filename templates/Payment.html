@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <div class="form-style-5">
-    <form action="{{ url_for('success') }}" method="POST">
+    <form action="{{ url_for('success') }}" method="GET">
         <fieldset>
 
             <legend><span class="number"></span> Credit Card Info</legend>
@@ -10,9 +10,9 @@
             <input type="radio" name="CardType" value="Discover">Discover
             <br><br>
 
-            <input type="text" name="CardNumber" placeholder="Your Credit Card Number *" maxlength="16" onkeypress="return onlyNumberKey(event)">
-            <input type="date" name="ExpiryDate" placeholder="Expiry Date *">
-            <input type="text" name="SecurityCode" placeholder="SecurityCode *" maxlength="4" onkeypress="return onlyNumberKey(event)">
+            <input type="text" name="CardNumber" placeholder="Your Credit Card Number *" maxlength="16" onkeypress="return onlyNumberKey(event)" required>
+            <input type="date" name="ExpiryDate" placeholder="Expiry Date *" required>
+            <input type="text" name="SecurityCode" placeholder="SecurityCode *" maxlength="4" onkeypress="return onlyNumberKey(event)" required>
             <input type="submit" name="CreditCard" value="Continue" />
     </form>
 </div>

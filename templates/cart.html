@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
-<table class="orderTable">
+<table class="orderTable" id="orderTbl">
     <th class="cartOrderItem">
         <div class="cartOrderItemContainer">
             <div class="cartOrderItemListPizzaNameContainer">
@@ -48,18 +48,11 @@
                 <div class="cartOrderItemListPriceContainer ">
                     <h6>{{ item[5] }}</h6>
                 </div>
-                <form action="{{ url_for('deleteItem', id=item[0] ) }}" method="GET">
-                    <input type="submit">
-
+                <form action="{{ url_for('deleteItem', id=item[0]) }}" method="GET">
+                    <input type="image" class="cartOrderItemDeleteButtonContainer" src="{{ url_for('static',filename='images/bin.png') }}" name=deleteOrderItem value="">
                 </form>
-
-                <!--<input type="image" class="cartOrderItemDeleteButtonContainer" src="{{ url_for('static',filename='images/bin.png') }}" action="{{ url_for('order') }}" method=GET name=deleteOrderItem value="">-->
-
             </div>
         </td>
-
-
-
     </tr>
     {% endfor %}
 
@@ -81,9 +74,9 @@
 </table>
 
 
-<div class="form-style-5 ">
-    <form action="{{ url_for('payment') }}" method="POST">
-        <input type="submit" value="Order" />
+<div class="form-style-5 " id="orderButtonContainer">
+    <form action="{{ url_for('payment') }}" method="GET">
+        <input type="submit" id="orderButton" value="Order" />
     </form>
 </div>
 
