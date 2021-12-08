@@ -9,7 +9,7 @@
             <td class="orderTableTdProduct">
                 <div class="orderTableProductContainer">
                     <div class="orderTableProductContainerPictureContainer">
-                        <img class="orderTablePicture" src="{{ url_for('static',filename='images/pizza1.jpeg') }}">
+                        <img class="orderTablePicture" src="{{ url_for('static', filename=['images/', [pizza[1], '.jpg']|join]|join|replace(' ', '') )}}">
                     </div>
                     <div class="orderTableProductContainerCaption">
                         <input type="hidden" name="productID" value="{{ pizza[0] }}">
