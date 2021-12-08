@@ -1,68 +1,20 @@
 {% extends "base.html" %} {% block content %}
 <div class="form-style-5">
-    <form action="{{ url_for('Payment') }}" method="POST">
+    <form action="{{ url_for('success') }}" method="POST">
         <fieldset>
-            
+
             <legend><span class="number"></span> Credit Card Info</legend>
-            <input type="radio" name="CardType" value="Visa">Visa 
+            <input type="radio" name="CardType" value="Visa">Visa
             <input type="radio" name="CardType" value="Master">MasterCard
             <input type="radio" name="CardType" value="AMEX">American Express
             <input type="radio" name="CardType" value="Discover">Discover
             <br><br>
-            
+
             <input type="text" name="CardNumber" placeholder="Your Credit Card Number *" maxlength="16" onkeypress="return onlyNumberKey(event)">
-            <input type="date" name="ExpiryDate" placeholder="Expiry Date *" >
+            <input type="date" name="ExpiryDate" placeholder="Expiry Date *">
             <input type="text" name="SecurityCode" placeholder="SecurityCode *" maxlength="4" onkeypress="return onlyNumberKey(event)">
-            <input type="submit" name="CreditCard" value="Continue" /> 
+            <input type="submit" name="CreditCard" value="Continue" />
     </form>
 </div>
-<!--- onlyNumberKey Function below refered to https://www.geeksforgeeks.org/how-to-force-input-field-to-enter-numbers-only-using-javascript/--> 
-<script>
-    function onlyNumberKey(evt) {
-          
-        // Only ASCII character in that range allowed
-        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-            return false;
-        
-        return true;
-    }
-</script>
-<!--function IsAMEX_CardN(evt){
-        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-            return false;
-        else{
-            if(document.getElementById('CardType').value == "AMEX"){
-                if(document.getElementById('CardNumber').value.length >15){
-                    return false
-                }
-            }
-            else{
-                if(document.getElementById('CardNumber').value.length >16){
-                    return false
-                }
-            }
-        }
-        return true
-    }
-    function IsAMEX_CVV(evt){
-        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-            return false;
-        else{
-            if(document.getElementById('AMEX').checked){
-                if(document.getElementById('SecurityCode').value.length >4){
-                    return false
-                }
-            }
-            else{
-                if(document.getElementById('SecurityCode').value.length >3){
-                    return false
-                }
-            }
-        }
-        return true
-    }
- -->
+
 {% endblock content %}

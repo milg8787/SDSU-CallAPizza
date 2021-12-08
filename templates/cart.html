@@ -30,28 +30,30 @@
         <td class="cartOrderItem ">
             <div class="cartOrderItemContainer ">
                 <div class="cartOrderItemListPizzaNameContainer ">
-                    <h6>{{ item[0] }}</h6>
-                </div>
-
-                <div class="cartOrderItemListSizeContainer ">
                     <h6>{{ item[1] }}</h6>
                 </div>
 
-                <div class="cartOrderItemListQuantityContainer ">
+                <div class="cartOrderItemListSizeContainer ">
                     <h6>{{ item[2] }}</h6>
                 </div>
 
-                <div class="cartOrderItemAdditionalItemsContainer ">
+                <div class="cartOrderItemListQuantityContainer ">
                     <h6>{{ item[3] }}</h6>
                 </div>
 
-                <div class="cartOrderItemListPriceContainer ">
+                <div class="cartOrderItemAdditionalItemsContainer ">
                     <h6>{{ item[4] }}</h6>
                 </div>
-                <form action="" method=POST>
-                    <input type="image" class="cartOrderItemDeleteButtonContainer" src="{{ url_for('static',filename='images/bin.png') }}" value="">
+
+                <div class="cartOrderItemListPriceContainer ">
+                    <h6>{{ item[5] }}</h6>
+                </div>
+                <form action="{{ url_for('deleteItem', id=item[0] ) }}" method="GET">
+                    <input type="submit">
+
                 </form>
 
+                <!--<input type="image" class="cartOrderItemDeleteButtonContainer" src="{{ url_for('static',filename='images/bin.png') }}" action="{{ url_for('order') }}" method=GET name=deleteOrderItem value="">-->
 
             </div>
         </td>
@@ -80,7 +82,9 @@
 
 
 <div class="form-style-5 ">
-    <input type="submit" value="Order" />
+    <form action="{{ url_for('payment') }}" method="POST">
+        <input type="submit" value="Order" />
+    </form>
 </div>
 
 

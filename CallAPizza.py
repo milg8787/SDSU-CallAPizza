@@ -1,9 +1,11 @@
 from itertools import count
 from os import SEEK_CUR
 import re
+from types import MethodType
 from flask import Flask, render_template, url_for, request, redirect, session
 
 import uuid, sys, datetime
+import numpy as np
 
 from werkzeug.wrappers import response
 from customerTO import customerTO
@@ -15,6 +17,7 @@ app = Flask(__name__)
 app.secret_key = "CallAPizzaSecret"
 
 orderList = []
+cartList = []
 
 @app.route("/")
 def main(name=None):
@@ -109,7 +112,6 @@ def order(name=None):
             replaceValue(request.form.get("checkBoxJalapenos")), replaceValue(request.form.get("checkBoxBlackOlives")),
             replaceValue(request.form.get("checkBoxRedOnions"))])
         
-        print(orderList, file=sys.stderr)
         
     conn.close()
     return render_template('order.html', pizzaList=pizzaList)
@@ -119,15 +121,10 @@ def order(name=None):
 
 @app.route("/cart", methods = ["POST", "GET"])
 def cart(name=None):
-    #conn, cursor = connectToDatabase())
-
-    #orderDetailsQuery = """Select price, quantiy, salami, ham, pepperoni, jalapenos, blackOlives, redOnions from orderDetails where orderID = %s"""
-    #orderDetailsInput = (session['orderID'])
-    #cursor.execute(orderDetailsQuery, orderDetailsInput)
-
     cartList = []
+    
     price = 0.0
-    for item in orderList:
+    for count, item in enumerate(orderList):
         addtionalItem = ""    
         dict = {'Salami': item[6], 'Ham': item[7], 'Pepperoni': item[8], 'Jalapenos': item[9], 'BlackOlives': item[10], 'RedOnions': item[11]} 
     
@@ -147,17 +144,46 @@ def cart(name=None):
         if len(addtionalItem) > 1:            
             addtionalItem = addtionalItem.rstrip(", ")
 
-        cartList.append([item[2], item[4], item[5], addtionalItem, item[3]])
+        cartList.append([count, item[2], item[4], item[5], addtionalItem, item[3]])
         price = price + item[3]
 
+    orderListDict = {"orderID":[], "productID": [], "price": [], "size": [], "quantity": [], "salami": [], "ham": [], "pepperoni": [], "jalapenos": [], "blackOlives": [], "redOnions": []}
+
+    for item in orderList:
+        orderListDict["orderID"].append(item[0])
+        orderListDict["productID"].append(item[1])
+        orderListDict["price"].append(item[2])
+        orderListDict["size"].append(item[3])
+        orderListDict["quantity"].append(item[4])
+        orderListDict["salami"].append(item[5])
+        orderListDict["ham"].append(item[6])
+        orderListDict["pepperoni"].append(item[7])
+        orderListDict["jalapenos"].append(item[8])
+        orderListDict["blackOlives"].append(item[9])
+        orderListDict["redOnions"].append(item[10])
         
 
+    if request.method == "POST":
+        conn = connectToDatabase()
+        cursor = conn.cursor()
+        for item in orderList:
+            orderDetailsQuery = """INSERT INTO orderDetails (orderID, productID, price, [size], quantity, salami, ham, pepperoni, jalapenos, blackOlives, redOnions) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+            orderDetailsInput = (item[0], item[1], item[3], item[4], item[5], item[6], item[7], item[8], item[9], item[10], item[11])
+            cursor.execute(orderDetailsQuery, orderDetailsInput)
+        conn.commit()
 
-    # if request.method == "POST":
-    #     return redirect(url_for("Payment", none=None))
+        conn.close()
+        return redirect(url_for("payment", none=None))
 
     return render_template('cart.html', orderList=cartList, price=price)
 
+
+@app.route("/deleteItem/<int:id>", methods = ["GET"])
+def deleteItem(id):
+    del orderList[id]
+    return redirect(url_for("cart", none=None))
+    
 
 @app.route("/payment", methods = ["POST", "GET"])
 def payment(name=None):
