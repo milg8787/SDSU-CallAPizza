@@ -1,15 +1,12 @@
 from itertools import count
 from os import SEEK_CUR
-import os
-import re
+from werkzeug.wrappers import response
 from types import MethodType
 from flask import Flask, render_template, url_for, request, redirect, session
 
 import uuid, sys, datetime
-
-from werkzeug.wrappers import response
-from customerTO import customerTO
-
+import os
+import re
 import pymssql
 # import pyodbc
 
